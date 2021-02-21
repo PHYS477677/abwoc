@@ -1,0 +1,67 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\renewcommand{\abstractname}{\vspace{-\baselineskip}}
+
+% Document
+\begin{document}
+\begin{center}
+    \Large Solar Event Identification and Prediction using Machine-Learning Techniques [please revise title] \\
+    \vspace{.6em}
+    \large Ted Grosson, Cody Meng, Preston Tracy, Jackson White, Yiwen Zhu
+    \vspace{.3em}
+    \\ Advisor: Chris Tunnel | Rice University
+    \vspace{.5em}
+    \normalsize
+    \\ Submitted February 22, 2021
+    \\
+    \vspace{1em}
+    \textbf{Project Pitch} \end{center} \vspace{-2.3em}
+
+\begin{abstract} \normalsize
+Solar events, such as flares and prominences, can lead to detrimental effects on Earth systems by disrupting electronics and communication systems, particularly in satellites with limited protection from Earth’s magnetic field. Due to the potential harm of these events, it would be remarkably useful to identify and predict these events when or before they occur to allow rapid preparatory actions to mitigate potential damages as much as possible. We propose applying machine learning techniques to historical solar data from NASA’s Solar Dynamics Observatory in order to train a neural network to identify and predict solar events from live multi-waveband imaging of the Sun. The Solar Dynamics Observatory (SDO) satellite was launched in 2010 and continuously observes the Sun on roughly 10-minute intervals with multiple imaging instruments. In particular, the Atmospheric Imaging Assembly (AIA) aboard SDO images the sun in wavelengths ranging from the UV to optical, providing a constant stream of live, high-resolution solar information \cite{Pesnell2012}. Using the images obtained from AIA, we should be able to easily identify x-ray and optical events and prominences emanating from the Sun. By analyzing historical AIA data prior to and during documented solar events, we may be able to construct a tool that predicts solar events before and as they actually occur.
+\end{abstract}
+
+\section*{Core Scientific Question}
+
+In this project, we plan to identify and predict specific solar events from multi-waveband observations of the Sun obtained from the Solar Dynamics Observatory Atmospheric Imaging Assembly. The cause of solar flares and prominences are most often attributed to magnetic fields, but we lack a concrete mechanism by which such events take place \cite{BOB}. Determining whether visible precursors to solar events exist, how early they take place, and how prominently they appear in each waveband, may provide valuable constraints on the theoretical mechanisms by which these solar events are created. Even if we fail to produce a neural network capable of predicting solar events before they occur, this failure may indicate that solar events lack temporal precursors large or coherent enough to appear on the Sun’s surface in x-ray, ultraviolet, and optical wavelength images. Because we are applying similar methods to both identification and prediction of solar events, we can perform at least a cursory analysis comparing the efficacy of our tools applied to both problems, which could provide a point of comparison between the visibility of solar events precursors to the events themselves. 
+
+We also hope to determine whether we can precisely identify solar radio events from optical or ultraviolet images of the Sun, as it is unclear as to the degree of precision by which we can identify solar events outside of their principal wavelengths. Should some solar events be recognizable in shorter wavelength images, we may be able to use this information to constrain or classify radio events. For example, if one type of radio event produces an identifiable signature in the optical while another does not, we may be able to use our tools to aid in classifying these events, providing additional clues as to the mechanisms by which either type of event can take place. In addition, if we are able to predict radio events in the optical or ultraviolet, this would provide similar benefits to those described in the previous paragraph: namely, determining how early, prominently, and in what wavelengths precursors to these events can occur. 
+
+\section*{Project Objectives}
+
+Our project objectives fall under three overarching steps, which we will discuss in detail within this section. First, we will attempt to train a neural network to identify solar events from solar images, using historical SDO AIA solar images in 5-6 wavebands between [wavelength] and [wavelength] Angstroms alongside solar event reports obtained from NOAA’s Space Weather Prediction Center. The images and solar event reports will be aligned in time, so that [to be continued]
+
+\section*{Data Description}
+
+\begin{figure}[ht]
+    \centering
+    \label{fig:LkCa15}
+    \includegraphics[width=0.64\textwidth]{samplefig.PNG}
+    \caption{\small Sample figure from Author (Year) \cite{citation}. This is a figure we have not placed into the draft yet. Please add some.}
+\end{figure}
+
+\section*{Background Information}
+
+Solar flares are highly energetic events of localized increased brightness on the sun over a time period ranging from milliseconds to over an hour. This brightness can be seen across many wavelengths, including x-ray, optical, and radio. They tend to be associated with groups of sunspots — localized regions of cooler material and strong magnetic fields — and are often accompanied by the ejection of charged particles. These particles, as well as high-energy electromagnetic radiation, can affect electrical systems and the Earth’s ionosphere, and have the potential to cause major disruptions \cite{BOB}. The main goal of the Solar Dynamics Observatory is to understand the mechanisms of these events which have the potential of affecting life on Earth \cite{Pesnell2012}. The precise cause of solar flares remains uncertain, but a leading theory is that energy is suddenly released from the strong magnetic field in sunspots through a process called reconnection. There are some successful prior efforts to predict the solar flares based on changes in the sun’s magnetic field \cite{Raboonik2016}. Because solar flare events are associated with changes in the Sun’s magnetic field, it may not be possible to directly predict them through purely visual means. Should our prediction method turn out to be satisfactory, it would provide an unprecedented view about the nature of solar flares that the solar flares are correlated to the dynamics of the sun's surface in a way that we can use the emission from the sun's surface to detect and predict a solar flare.
+
+[Add More?]
+
+\section*{Potential Risks}
+
+Although the data for this project is easy to access, the biggest risk is the failure to identify events from the images we have. If machine learning on the dataset we intend to use is not capable of detecting events, there is little hope for it to be able to predict them. There are curated datasets available which improve the quality of the images in some ways; however these are made available a week after the images are taken at the earliest, and would offer little use in trying to predict events in real time \cite{Galvez2019}.
+
+[Please God add more]
+
+\bibliographystyle{unsrt}
+\bibliography{bibfile}
+
+\section*{Appendix}
+
+[Lots of figures here plz]
+
+\end{document}

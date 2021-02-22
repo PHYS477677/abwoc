@@ -55,43 +55,37 @@ The AIA takes observations at ten different wavelengths, which are summarized in
 The different wavelengths observed by AIA were chosen to examine specific portions of the Sun’s surface or atmosphere. Each of these wavelengths are centered on a different emission line to examine the features visible at the temperature of the emission line. The EUV wavelengths observe extremely hot temperatures, and are centered on different iron ions, ranging from Fe IX (171 Å) to Fe XXIII (131 Å), and observing temperatures from 60,000 K (304 Å) to 20,000,000 K (193 Å) \cite{Lemen2012}. The 1700 Å and 4500 Å wavelengths show continuum images of the Sun in the UV and optical, respectively. The 1600 Å wavelength examines the transition region between the chromosphere and the corona. The 304 Å wavelength also examines the transition region, as well as the chromosphere. The 171 Å wavelength shows the “quiet” (low magnetic activity) corona and coronal loops, and the 193 Å examines a hotter region of the corona, as well as the hotter material in solar flares. The 211 Å and 335 Å wavelengths both examine the hot, magnetically active regions of the corona. Finally, the 94 Å and 131 Å wavelengths both examine flaring regions, with wavelengths centered at different temperatures \cite{Zell2015}. The temperature coverage provided by these wavelengths allows for a more complete reconstruction of thermal structure than previous missions \cite{AIA_ConceptReport}.
 
 \begin{table}
-\begin{center}
- \begin{tabular}{||c | c ||} 
- \hline
- Acronym & Full Name \\ [0.5ex] 
- \hline\hline
- BSL & Bright Surge on Limb \\
- \hline
- DSF & Filament Disappearance \\ 
- \hline
-    EPL & Eruptive Prominence on Limb\\
- \hline
-    FIL & Filament\\
- \hline
-    FLA & Optical Flare in H-Alpha\\
- \hline
-    FOR & Forbush Decrease (CR Decrease) \\
- \hline
-    GLE & Ground-Level Event (CR Increase) \\
- \hline
-    LPS & Loop Prominence System\\
- \hline
-    PCA & Polar Cap Absorption\\
- \hline
-    RBR & Fixed-Frequency Radio Burst\\
- \hline
-    RNS & Radio Noise Storm\\
- \hline
-    RSP & Sweep-Frequency Radio Burst\\
- \hline
-    SPY & Spray\\
- \hline
-    XRA & X-ray Event \\
- \hline
-\end{tabular}
-\caption{List of Event Types tracked in space weather reports}
-\label{space_weather_events}
-\end{center}
+	\centering
+	\caption*{AIA Filter Summary}
+	\begin{tabular}{||c| c | c | c ||} 
+		\hline
+		Wavelength (\AA) & Primary Emission Source & Region of Atmosphere & log(T)\\ [0.5ex] 
+		\hline\hline
+		4500 & Continuum & Photosphere & 3.7 \\
+		\hline
+		1700 & Continuum & Photosphere & 3.7 \\
+		\hline
+		1600 & C IV + Continuum & Upper Photosphere / Transition Region & 4.7 \\
+		\hline
+		335 & Fe XVI & Flaring Regions & 6.8 \\
+		\hline
+		304 & He II & Chromosphere / Transition Region & 5.8 \\
+		\hline
+		211 & Fe XIV & Active-Region Corona & 6.3 \\
+		\hline
+		193 & Fe XII, XXIV & Corona and Hot Flare Plasma & 6.1, 7.3 \\
+		\hline 
+		171 & Fe IX & Quiet Corona / Upper Transition Region & 5.0 \\
+		\hline
+		131 & Fe VIII, XX, XXIII & Flaring Regions & 5.6,7.0,7.2 \\
+		\hline
+		94 & Fe XVIII & Flaring Regions & 6.8 \\
+		\hline
+		
+	\end{tabular}
+	\vspace{0.5em}
+	\caption{The wavelengths observed by the AIA, along with the primary source of emission at each wavelength, and the approximate location and temperature of the portion of the Sun that each wavelength probes. \cite{AIA_ConceptReport}}
+	\label{AIA_wavelengths}
 \end{table}
 
 \subsection*{NOAA Space Weather Reports}
@@ -106,37 +100,43 @@ The second dataset, the space weather reports, are created once per day by the N
 \end{figure}
 
 \begin{table}
-\centering
-\caption*{AIA Filter Summary}
-\begin{tabular}{||c| c | c | c ||} 
- \hline
- Wavelength (\AA) & Primary Emission Source & Region of Atmosphere & log(T)\\ [0.5ex] 
- \hline\hline
-  4500 & Continuum & Photosphere & 3.7 \\
- \hline
- 1700 & Continuum & Photosphere & 3.7 \\
- \hline
- 1600 & C IV + Continuum & Upper Photosphere / Transition Region & 4.7 \\
- \hline
- 335 & Fe XVI & Flaring Regions & 6.8 \\
- \hline
- 304 & He II & Chromosphere / Transition Region & 5.8 \\
- \hline
- 211 & Fe XIV & Active-Region Corona & 6.3 \\
- \hline
- 193 & Fe XII, XXIV & Corona and Hot Flare Plasma & 6.1, 7.3 \\
- \hline 
- 171 & Fe IX & Quiet Corona / Upper Transition Region & 5.0 \\
- \hline
- 131 & Fe VIII, XX, XXIII & Flaring Regions & 5.6,7.0,7.2 \\
- \hline
- 94 & Fe XVIII & Flaring Regions & 6.8 \\
- \hline
- 
-\end{tabular}
-\vspace{0.5em}
-\caption{The wavelengths observed by the AIA, along with the primary source of emission at each wavelength, and the approximate location and temperature of the portion of the Sun that each wavelength probes. \cite{AIA_ConceptReport}}
-\label{AIA_wavelengths}
+	\begin{center}
+		\begin{tabular}{||c | c ||} 
+			\hline
+			Acronym & Full Name \\ [0.5ex] 
+			\hline\hline
+			BSL & Bright Surge on Limb \\
+			\hline
+			DSF & Filament Disappearance \\ 
+			\hline
+			EPL & Eruptive Prominence on Limb\\
+			\hline
+			FIL & Filament\\
+			\hline
+			FLA & Optical Flare in H-Alpha\\
+			\hline
+			FOR & Forbush Decrease (CR Decrease) \\
+			\hline
+			GLE & Ground-Level Event (CR Increase) \\
+			\hline
+			LPS & Loop Prominence System\\
+			\hline
+			PCA & Polar Cap Absorption\\
+			\hline
+			RBR & Fixed-Frequency Radio Burst\\
+			\hline
+			RNS & Radio Noise Storm\\
+			\hline
+			RSP & Sweep-Frequency Radio Burst\\
+			\hline
+			SPY & Spray\\
+			\hline
+			XRA & X-ray Event \\
+			\hline
+		\end{tabular}
+		\caption{List of Event Types tracked in space weather reports}
+		\label{space_weather_events}
+	\end{center}
 \end{table}
 
 \subsection*{Data Storage Concerns}
@@ -144,7 +144,7 @@ Every event has a listed start time and end time, among other parameters. We wil
 
 \section*{Background Information}
 
-Solar flares are highly energetic events of localized increased brightness on the sun over a time period ranging from milliseconds to over an hour. This brightness can be seen across many wavelengths, including x-ray, optical, and radio, and can be seen in Figure \ref{flare}. They tend to be associated with groups of sunspots — localized regions of cooler material and strong magnetic fields — and are often accompanied by the ejection of charged particles. These particles, as well as high-energy electromagnetic radiation, can affect electrical systems and the Earth’s ionosphere, and have the potential to cause major disruptions \cite{BOB}. The main goal of the Solar Dynamics Observatory is to understand the mechanisms of these events which have the potential of affecting life on Earth \cite{Pesnell2012}. The precise cause of solar flares remains uncertain, but a leading theory is that energy is suddenly released from the strong magnetic field in sunspots through a process called reconnection. This occurs when a magnetic field loop ``breaks" and ``reconnects" in a more stable path, releasing most of the energy stored in the loop \cite{BOB}. An additional process which appears in our images is granulation, which occurs as a result of convection in the solar atmosphere. Granules tend to span around 700~km and have lifetimes of five to ten minutes \cite{BOB}. Since we are analyzing how the Sun is changing over time, the granulation pattern can show up in our images, as seen in Figure \ref{flare_diff}.
+Solar flares are highly energetic events of localized increased brightness on the sun over a time period ranging from milliseconds to over an hour. This brightness can be seen across many wavelengths, including x-ray, optical, and radio, and can be seen in Figure \ref{flare}. They tend to be associated with groups of sunspots — localized regions of cooler material and strong magnetic fields — and are often accompanied by the ejection of charged particles. These particles, as well as high-energy electromagnetic radiation, can affect electrical systems and the Earth’s ionosphere, and have the potential to cause major disruptions \cite{BOB}. The main goal of the Solar Dynamics Observatory is to understand the mechanisms of these events which have the potential of affecting life on Earth \cite{Pesnell2012}. The precise cause of solar flares remains uncertain, but a leading theory is that energy is suddenly released from the strong magnetic field in sunspots through a process called reconnection. This occurs when a magnetic field loop ``breaks" and ``reconnects" in a more stable path, releasing most of the energy stored in the loop \cite{BOB}. An additional process which appears in our images is granulation, which occurs as a result of convection in the solar atmosphere. Granules tend to span around 700~km and have lifetimes of five to ten minutes \cite{BOB}. Since we are analyzing how the Sun is changing over time, the granulation pattern could affect our identifications, as seen in Figure \ref{flare_diff}.
 
 There are some successful prior efforts to predict the solar flares based on changes in the Sun’s magnetic field \cite{Raboonik2016}; however, because solar flare events are associated with changes in the Sun’s magnetic field, it may not be possible to directly predict them through purely visual means. Should our prediction method turn out to be satisfactory, it would provide an unprecedented view about the nature of solar flares that the solar flares are correlated to the dynamics of the sun's surface in a way that we can use the emission from the sun's surface to detect and predict a solar flare.
 
@@ -177,7 +177,7 @@ Although the data for this project is easy to access, the biggest risk is the fa
 \begin{figure}[ht]
 	\includegraphics[width=0.9\textwidth]{figures/0819_flare_diff.png}
 	\centering
-	\caption{The same flare as above, after subtracting a previous image from the current one. This process is sometimes called difference imaging, and is useful in seeing how an object changes over time, such as the appearance of a flare. These difference images were taken over a span of two minutes, but varying this time could optimize our detection process. The changing granulation pattern is especially apparent in the 1700~\AA{} image.}
+	\caption{The same flare as above, after subtracting a previous image from the current one. This process is sometimes called difference imaging, and is useful in seeing how an object changes over time, such as the appearance of a flare. These difference images were taken over a span of two minutes, but varying this time could optimize our detection process. The changing granulation pattern is especially apparent in the 1700~\AA{} image, where the flare is completely drowned out.}
 	\label{flare_diff}
 \end{figure}
 

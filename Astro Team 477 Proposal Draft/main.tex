@@ -35,7 +35,14 @@ We also hope to determine whether we can precisely identify solar radio events f
 
 \section*{Project Objectives}
 
-Our project objectives fall under three overarching steps, which we will discuss in detail within this section. First, we will attempt to train a neural network to identify solar events from solar images, using historical SDO AIA solar images in 5-6 wavebands between [wavelength] and [wavelength] Angstroms alongside solar event reports obtained from NOAAâ€™s Space Weather Prediction Center. The images and solar event reports will be aligned in time, so that [to be continued]
+Our project objectives fall under three overarching steps, which we will discuss in detail within this section. 
+
+First, we will attempt to train a neural network to identify solar events from solar images, using historical SDO AIA solar images in 5-6 wavebands between 90 and 300 Angstroms alongside solar event reports obtained from NOAA’s Space Weather Prediction Center. The images and solar event reports will be aligned in time, so that the neural network will learn to associate features within the images with specific types of solar events. We will initially focus on two types of events, x-ray events and optical flares. 
+
+Next, we will apply this same methodology to radio bursts. We will attempt to use the longest wavelengths available to us on the AIA, but radio emission is well outside of the low-frequency limit of the accessible bandpasses. That being said, we will still train a neural network on similar sets of AIA images alongside simultaneous radio burst reports. If radio bursts carry signature features present in higher-frequency wavebands, our neural network may be able to identify them. 
+
+Finally, should the previous steps be successful, we will transition to prediction of solar events rather than identification. Our overall methodology is the same, but we will train our neural networks on solar event data alongside images taken at various time intervals before the solar events occurred. We will experiment with various time lags, training several neural networks on different lags simultaneously, and evaluating what time lags are optimal or effective for certain kinds of events. With an understanding of predictive accuracy as a function of time lag, we can determine whether and when notable surface signatures arise as precursors to x-ray, optical, and radio solar events. The previous two steps will both serve as points of comparison between the efficacy of our identification and prediction networks as well as provide a proof of concept demonstration of how our predictive network may function under ideal conditions, with a time lag of zero. 
+
 
 \section*{Data Description}
 

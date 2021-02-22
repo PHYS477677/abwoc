@@ -15,7 +15,7 @@
     \vspace{.6em}
     \large Ted Grosson, Cody Meng, Preston Tracy, Jackson White, Yiwen Zhu
     \vspace{.3em}
-    \\ Advisor: Chris Tunnel | Rice University
+    \\ Advisor: Chris Tunnell | Rice University
     \vspace{.5em}
     \normalsize
     \\ Submitted February 22, 2021
@@ -135,28 +135,41 @@ Every event has a listed start time and end time, among other parameters. We wil
 
 \section*{Background Information}
 
-Solar flares are highly energetic events of localized increased brightness on the sun over a time period ranging from milliseconds to over an hour. This brightness can be seen across many wavelengths, including x-ray, optical, and radio. They tend to be associated with groups of sunspots — localized regions of cooler material and strong magnetic fields — and are often accompanied by the ejection of charged particles. These particles, as well as high-energy electromagnetic radiation, can affect electrical systems and the Earth’s ionosphere, and have the potential to cause major disruptions \cite{BOB}. The main goal of the Solar Dynamics Observatory is to understand the mechanisms of these events which have the potential of affecting life on Earth \cite{Pesnell2012}. The precise cause of solar flares remains uncertain, but a leading theory is that energy is suddenly released from the strong magnetic field in sunspots through a process called reconnection. There are some successful prior efforts to predict the solar flares based on changes in the sun’s magnetic field \cite{Raboonik2016}. Because solar flare events are associated with changes in the Sun’s magnetic field, it may not be possible to directly predict them through purely visual means. Should our prediction method turn out to be satisfactory, it would provide an unprecedented view about the nature of solar flares that the solar flares are correlated to the dynamics of the sun's surface in a way that we can use the emission from the sun's surface to detect and predict a solar flare.
+Solar flares are highly energetic events of localized increased brightness on the sun over a time period ranging from milliseconds to over an hour. This brightness can be seen across many wavelengths, including x-ray, optical, and radio, and can be seen in Figure \ref{flare}. They tend to be associated with groups of sunspots — localized regions of cooler material and strong magnetic fields — and are often accompanied by the ejection of charged particles. These particles, as well as high-energy electromagnetic radiation, can affect electrical systems and the Earth’s ionosphere, and have the potential to cause major disruptions \cite{BOB}. The main goal of the Solar Dynamics Observatory is to understand the mechanisms of these events which have the potential of affecting life on Earth \cite{Pesnell2012}. The precise cause of solar flares remains uncertain, but a leading theory is that energy is suddenly released from the strong magnetic field in sunspots through a process called reconnection. This occurs when a magnetic field loop ``breaks" and ``reconnects" in a more stable path, releasing most of the energy stored in the loop \cite{BOB}. An additional process which appears in our images is granulation, which occurs as a result of convection in the solar atmosphere. Granules tend to span around 700~km and have lifetimes of five to ten minutes \cite{BOB}. Since we are analyzing how the Sun is changing over time, the granulation pattern can show up in our images, as seen in Figure \ref{flare_diff}.
 
-[Add More?]
+There are some successful prior efforts to predict the solar flares based on changes in the Sun’s magnetic field \cite{Raboonik2016}; however, because solar flare events are associated with changes in the Sun’s magnetic field, it may not be possible to directly predict them through purely visual means. Should our prediction method turn out to be satisfactory, it would provide an unprecedented view about the nature of solar flares that the solar flares are correlated to the dynamics of the sun's surface in a way that we can use the emission from the sun's surface to detect and predict a solar flare.
+
 
 \section*{Potential Risks}
 
-Although the data for this project is easy to access, the biggest risk is the failure to identify events from the images we have. If machine learning on the dataset we intend to use is not capable of detecting events, there is little hope for it to be able to predict them. There are curated datasets available which improve the quality of the images in some ways; however these are made available a week after the images are taken at the earliest, and would offer little use in trying to predict events in real time \cite{Galvez2019}.
+Although the data for this project is easy to access, the biggest risk is the failure to identify events from the images we have. If machine learning on the dataset we intend to use is not capable of detecting events, there is little hope for it to be able to predict them. There are curated datasets available which improve the quality of the images in some ways; however these are made available a week after the images are taken at the earliest, and would offer little use in trying to predict events in real time \cite{Galvez2019}. In the event that the lower-quality images are unable to detect events, the curated datasets could still be useful in determining whether flare events are associated with visual changes in the Sun, which is valuable information regardless of whether it can be used to predict flares in real time.
 
-[Please God add more]
 
 \bibliographystyle{unsrt}
 \bibliography{bibfile}
 \pagebreak
 \section*{Appendix}
 
-[Lots of figures here plz]
 
 \begin{figure}[h]
     \includegraphics[width=12cm]{figures/swr_sample.png}
     \centering
-    \caption{Sample Space Weather Report text file From June 6 2015. }
+    \caption{Sample Space Weather Report text file From June 6, 2015. Along with event types and times, the reports also contain information about the event strengths and locations.}
     \label{swr_sample}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=7in]{figures/0819_flare_labeled.png}
+	\centering
+	\caption{A small x-ray flare which occurred August 19, 2020 in each AIA wavelength apart from 4500~\AA{}. The flare, circled in red on each image, shows up in all wavelengths to varying degrees.}
+	\label{flare}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=7in]{figures/0819_flare_diff.png}
+	\centering
+	\caption{The same flare as above, after subtracting a previous image from the current one. This process is sometimes called difference imaging, and is useful in seeing how an object changes over time, such as the appearance of a flare. These difference images were taken over a span of two minutes, but varying this time could optimize our detection process. The changing granulation pattern is especially apparent in the 1700~\AA{} image.}
+	\label{flare_diff}
 \end{figure}
 
 

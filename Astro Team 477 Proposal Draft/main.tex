@@ -1,3 +1,4 @@
+
 \documentclass[12pt, letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
@@ -88,7 +89,7 @@ The different wavelengths observed by AIA were chosen to examine a specific port
     XRA & X-ray Event \\
  \hline
 \end{tabular}
-\caption{Events tracked in space weather reports}
+\caption{List of Event Types tracked in space weather reports}
 \label{space_weather_events}
 \end{center}
 \end{table}
@@ -98,7 +99,7 @@ The different wavelengths observed by AIA were chosen to examine a specific port
 The second dataset, the space weather reports, are created once per day by the NOAA and can contain 13 different types of space weather events, which are listed in Table \ref{space_weather_events}. These reports exist back until 1997, so we have corresponding reports for all AIA data. A sample report from 2015 is depicted in Figure \ref{swr_sample}. The entire collection of reports amounts to only 18 MB in storage size, so we are able to store all the reports on google drive. 79.6\% of the reports since 2010 have at least one observed space weather event, and there are on average 15.0 events per day. There are significant frequency discrepancies between the different types of space weather events. As shown in Figure \ref{swe_freq}, the most common events are X-Ray events (XRA), optical flares in H-Alpha (FLA), and Sweep-Frequency Radio Bursts (RSP), and Fixed-Frequency Radio Bursts (RBR). Each of these events comprise almost a quarter of the dataset. 
 
 \begin{figure}
-    \includegraphics[width=12cm]{figures/Space_Weather_Plot.png}
+    \includegraphics[width=0.8\textwidth]{figures/Space_Weather_Plot.png}
     \centering
     \caption{Total number of space weather events observed since 2010, grouped by event type (Event types are listed in table \ref{space_weather_events})}
     \label{swe_freq}
@@ -107,7 +108,7 @@ The second dataset, the space weather reports, are created once per day by the N
 \begin{table}
 \centering
 \caption*{AIA Filter Summary}
-\begin{tabular}{||c | c | c | c ||} 
+\begin{tabular}{||c| c | c | c ||} 
  \hline
  Wavelength (\AA) & Primary Emission Source & Region of Atmosphere & log(T)\\ [0.5ex] 
  \hline\hline
@@ -133,6 +134,7 @@ The second dataset, the space weather reports, are created once per day by the N
  \hline
  
 \end{tabular}
+\vspace{0.5em}
 \caption{The wavelengths observed by the AIA, along with the primary source of emission at each wavelength, and the approximate location and temperature of the portion of the Sun that each wavelength probes. \cite{AIA_ConceptReport}}
 \label{AIA_wavelengths}
 \end{table}
@@ -149,7 +151,7 @@ There are some successful prior efforts to predict the solar flares based on cha
 
 \section*{Potential Risks}
 
-Although the data for this project is easy to access, the biggest risk is the failure to identify events from the images we have. If machine learning on the dataset we intend to use is not capable of detecting events, there is little hope for it to be able to predict them. There are curated datasets available which improve the quality of the images in some ways; however these are made available a week after the images are taken at the earliest, and would offer little use in trying to predict events in real time \cite{Galvez2019}. In the event that the lower-quality images are unable to detect events, the curated datasets could still be useful in determining whether flare events are associated with visual changes in the Sun, which is valuable information regardless of whether it can be used to predict flares in real time.
+Although the data for this project is easy to access, the biggest risk is the failure to identify events from the images we have. If our produced neural networks are not capable of detecting events, then there is little hope for them to be able to predict such events beforehand. There are curated datasets available which could improve the quality of the images in some ways; however, these are only available a week after the images are taken at the earliest, offering little use in trying to predict events in real time \cite{Galvez2019}. In the event that the lower-quality images are unable to detect events, the curated datasets could still be useful in determining whether flare events are associated with visual changes in the Sun, which is valuable information regardless of whether it can be used to predict flares in real time.
 
 
 \bibliographystyle{unsrt}
@@ -158,22 +160,22 @@ Although the data for this project is easy to access, the biggest risk is the fa
 \section*{Appendix}
 
 
-\begin{figure}[h]
-    \includegraphics[width=12cm]{figures/swr_sample.png}
+\begin{figure}[ht]
+    \includegraphics[width=0.9\textwidth]{figures/swr_sample.png}
     \centering
     \caption{Sample Space Weather Report text file From June 6, 2015. Along with event types and times, the reports also contain information about the event strengths and locations.}
     \label{swr_sample}
 \end{figure}
 
-\begin{figure}[h]
-	\includegraphics[width=7in]{figures/0819_flare_labeled.png}
+\begin{figure}[ht]
+	\includegraphics[width=0.9\textwidth]{figures/0819_flare_labeled.png}
 	\centering
 	\caption{A small x-ray flare which occurred August 19, 2020 in each AIA wavelength apart from 4500~\AA{}. The flare, circled in red on each image, shows up in all wavelengths to varying degrees.}
 	\label{flare}
 \end{figure}
 
-\begin{figure}[h]
-	\includegraphics[width=7in]{figures/0819_flare_diff.png}
+\begin{figure}[ht]
+	\includegraphics[width=0.9\textwidth]{figures/0819_flare_diff.png}
 	\centering
 	\caption{The same flare as above, after subtracting a previous image from the current one. This process is sometimes called difference imaging, and is useful in seeing how an object changes over time, such as the appearance of a flare. These difference images were taken over a span of two minutes, but varying this time could optimize our detection process. The changing granulation pattern is especially apparent in the 1700~\AA{} image.}
 	\label{flare_diff}

@@ -1,1 +1,1 @@
-Figures being used in LaTeX Proposal
+Figures being used in initial report

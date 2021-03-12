@@ -24,7 +24,7 @@ def grab(dirPath, wavelength, date, time):
         raise Exception('No files found that match input!')
 
     if len(foundFiles)>1:
-        warnings.warnarn('Multiple files match input! Returning the first file.')
+        warnings.warn('Multiple files match input! Returning the first file.')
 
     return file
 

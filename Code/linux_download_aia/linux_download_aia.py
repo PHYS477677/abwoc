@@ -354,7 +354,9 @@ if not os.path.isdir(local_path):
 # Dictionary of Google Drive folder IDs for each event type
 path_id_dict = {
   'XRA_events': '1PwUaIaIXlWsCnpQ0ub86X1igdAFJCenf', 
-  'XRA_nulls': '1HNvf0CWYWVVuv0zwMCVv1mU9hRwUoGcT'
+  'XRA_nulls': '1HNvf0CWYWVVuv0zwMCVv1mU9hRwUoGcT', 
+  'FLA_events': '1VuTnV6Q-0iOijzhNi3uyhMePPNb89q1N', 
+  'FLA_nulls': '1-_n0qQarKgyfVXD6dkMJm5oDBiw6ATbv'
 }
 event_path_id = path_id_dict[event_type+"_events"]
 null_path_id = path_id_dict[event_type+"_nulls"]

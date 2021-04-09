@@ -6,7 +6,8 @@ This script reduces full size (4096x4096) .fits images, downscales them,
 and then uploads them back into the google drive as .gz files.
 
 To run within a colab script, first "import data_reducer", then execute
-data_reducer.reduce_data(wavelengths, date_paths, reduction_factor)
+data_reducer.reduce_data(wavelengths, date_paths, normalize, 
+reduction_factor)
 
 
 Inputs
@@ -231,9 +232,16 @@ def reduce_data(wavelengths, date_paths, normalize=True,
             null_path = AIA_path + null_folder + date + str(w) + "/"
 
             event_gz_path = AIA_path + event_folder + "gz_" + str(w) + "_" \
-                + str(int(4096/reduction_factor)) + "/"
+                + str(int(4096/reduction_factor))
+            if normalize:
+                event_gz_path += "_normalized"
+            event_gz_path += "/"
+
             null_gz_path = AIA_path + null_folder + "gz_" + str(w) + "_" \
-                + str(int(4096/reduction_factor)) + "/"
+                + str(int(4096/reduction_factor))
+            if normalize:
+                null_gz_path += "_normalized"
+            null_gz_path += "/"
 
             print("Converting path: " + event_folder[52:] + date + str(w)
                   + "/ to gz_" + str(w) + "_512")

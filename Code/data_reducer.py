@@ -255,8 +255,8 @@ def reduce_data(wavelengths, date_paths, normalize=True,
             null_gz_path = AIA_path + null_folder + "gz_" + str(w) + "_" \
                 + str(int(4096/reduction_factor)) + normalize_path + "/"
 
-            print("Converting path: " + event_folder[52:] + date + str(w)
-                  + "/ to gz_" + str(w) + "_512" + normalize_path)
+            print("Converting event path: " + event_folder[52:] + date 
+                  + str(w) + "/ to gz_" + str(w) + "_512" + normalize_path)
             convert_to_gz(event_path,
                           event_gz_path,
                           reduction_factor,
@@ -264,8 +264,8 @@ def reduce_data(wavelengths, date_paths, normalize=True,
                           normalize,
                           plot=False)
 
-            print("Converting path: " + null_folder[52:] + date + str(w)
-                  + "/ to gz_" + str(w) + "_512" + normalize_path)
+            print("Converting null path: " + null_folder[52:] + date
+                  + str(w) + "/ to gz_" + str(w) + "_512" + normalize_path)
             convert_to_gz(null_path,
                           null_gz_path,
                           reduction_factor,

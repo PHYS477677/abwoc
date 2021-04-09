@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""data_reducer.py
+"""
+data_reducer.py.
 
 This script is designed to be run within a pre-mounted Colab notebook.
 This script reduces full size (4096x4096) .fits images, downscales them,
@@ -21,31 +21,22 @@ Inputs
 Original file is located at
     https://colab.research.google.com/drive/1kBJ4YF6Nok36UcTkULBT2kBzDjiJkIUH
 """
-# #Load the Drive helper and mount the google drive
-# from google.colab import drive
-# drive.mount('/content/drive')
-
-# Install aiapy to colab disk
-!pip install aiapy
 
 # Import packages
 import numpy as np
 import matplotlib.pyplot as plt
-import os, os.path
-import sys
-import random
+import os.path
 import glob
-from astropy.io import fits
-from aiapy.calibrate import register, update_pointing, normalize_exposure
 import sunpy.map
-
 
 # =============================================================================
 #                               Helper Functions
 # =============================================================================
+
+
 def mean_pool(square_array, ratio):
     """
-    Function to downsample a square array after applying a meanpool.
+    Downsample a square array after applying a meanpool.
 
     Inputs
     ------
@@ -72,9 +63,9 @@ def mean_pool(square_array, ratio):
 
 
 def convert_to_gz(fits_folder, gz_folder, down_sample_factor, date,
-                  plot=False):
+                  normalize, plot=False):
     """
-    This script converts all fits files in a given folder to compressed
+    Convert all fits files in a given folder to compressed
     .gz numpy arrays, after preforming a meanpool downsample.
 
     Inputs
@@ -122,49 +113,67 @@ def convert_to_gz(fits_folder, gz_folder, down_sample_factor, date,
                     np.median(mean_data) <= 1:
                 print("bad image")
             else:
-                np.savetxt(X=normalize_exp(mean_data, plot=plot),
+                np.savetxt(X=normalize_exp(mean_data, normalize, plot=plot),
                            fname=gz_folder+filename[:-5]+".gz")
                 if counter % 5 == 0:
                     print("%.3f %% finished" % (100.0*counter/total_files))
                 counter += 1
 
 
-def normalize_exp(img_array, plot=False):
+def normalize_exp(img_array, normalize, plot=False):
     """
-    Normalizes image arrays to a range of 0 to 1, based on the normalization
-    equation 1-exp(-image/factor), where the factor term is selected such that
+    Normalize image arrays between 0 and 1 and optionally plot the images.
+
+    Normalize image arrays based on the normalization equation
+    1-exp(-image/factor), where the factor term is selected such that
     the image is not highly skewed towards values of ~0 or ~1.
 
     Inputs
     ------
       img_array : Numpy array which contains the pixel values for some image,
                   which is to be normalized based on the 1-exp(-x) equations
+      normalize : Boolean, optional
+        Determines whether to apply a 0-1 normalization to the reduced images.
+        If true, then the images will be normalized.
+      normalize : Boolean, optional
+        Determines whether to plot the saved images using imshow.
+        The default is False, which does not plot the images.
 
     Outputs
     -------
-      The normalized array ranging from 0 to 1
+      The potentially normalized output image.
     """
+    # Optionally plot the original images
     if plot:
         plt.imshow(img_array)
         plt.show()
+
+    # Zero negative values
     img_array[img_array < 0] = 0
 
-    norm_img = 1-np.exp(-img_array/100/np.median(img_array))
-    # print(np.median(img_array))
-    if plot:
-        plt.imshow(norm_img, vmin=0, vmax=1)
-        plt.colorbar()
-    plt.show()
-    return norm_img
+    # Optionally normalize the images
+    if normalize:
+        norm_img = 1-np.exp(-img_array/100/np.median(img_array))
+        # Optionally plot the normalized images
+        if plot:
+            plt.imshow(norm_img, vmin=0, vmax=1)
+            plt.colorbar()
+            plt.show()
+        return norm_img
+    else:
+        return img_array
 
 
 # =============================================================================
 #                                  Main Function
 # =============================================================================
-def reduce_data(wavelengths, date_paths, reduction_factor=8, event="XRA"):
+def reduce_data(wavelengths, date_paths, normalize=True,
+                reduction_factor=8, event="XRA"):
     """
-    This function reduces full size (4096x4096) .fits images, downscales them,
-        and then uploads them back into the google drive as .gz files.
+    Reduces full size .fits images and uploads them as .gz to google drive.
+
+    Images are downscaled by a reduction factor, and then are uploaded back
+        into the google drive as .gz files.
 
     Parameters
     ----------
@@ -175,6 +184,9 @@ def reduce_data(wavelengths, date_paths, reduction_factor=8, event="XRA"):
         List of years and months over which to reduce the data.
         Each string is given in the format "[year]_[month]_"
         For example: ["2012_03_", "2014_12_"]
+    normalize : Boolean, optional
+        Determines whether to apply a 0-1 normalization to the reduced images.
+        The default is True, which normalizes the images.
     reduction_factor : Integer, optional
         Factor by which to reduce the original 4096 x 4096 images.
         For example: reduction_factor = 8 produces 512 x 512 images.
@@ -224,19 +236,21 @@ def reduce_data(wavelengths, date_paths, reduction_factor=8, event="XRA"):
                 + str(int(4096/reduction_factor)) + "/"
 
             print("Converting path: " + event_folder[52:] + date + str(w)
-                  + "/ to gz_512")
+                  + "/ to gz_" + str(w) + "_512")
             convert_to_gz(event_path,
                           event_gz_path,
                           reduction_factor,
                           date[:-1],
+                          normalize,
                           plot=False)
 
             print("Converting path: " + null_folder[52:] + date + str(w)
-                  + "/ to gz_512")
+                  + "/ to gz_" + str(w) + "_512")
             convert_to_gz(null_path,
                           null_gz_path,
                           reduction_factor,
                           date[:-1],
+                          normalize,
                           plot=False)
 
     print("\nAll Conversions Complete.")

@@ -6,7 +6,7 @@ This script reduces full size (4096x4096) .fits images, downscales them,
 and then uploads them back into the google drive as .gz files.
 
 To run within a colab script, first "import data_reducer", then execute
-data_reducer.reduce_data(wavelengths, date_paths, normalize, 
+data_reducer.reduce_data(wavelengths, date_paths, normalize,
 reduction_factor)
 
 
@@ -224,6 +224,9 @@ def reduce_data(wavelengths, date_paths, normalize=True,
                + "AIA_files/"
     event_folder = event + '_events/'
     null_folder = event + '_nulls/'
+    normalize_path = ""
+    if normalize:
+        normalize_path += "_normalized"
 
     # Iterate over all combinations of dates and wavelengths
     for w in wavelengths:
@@ -232,19 +235,13 @@ def reduce_data(wavelengths, date_paths, normalize=True,
             null_path = AIA_path + null_folder + date + str(w) + "/"
 
             event_gz_path = AIA_path + event_folder + "gz_" + str(w) + "_" \
-                + str(int(4096/reduction_factor))
-            if normalize:
-                event_gz_path += "_normalized"
-            event_gz_path += "/"
+                + str(int(4096/reduction_factor)) + normalize_path + "/"
 
             null_gz_path = AIA_path + null_folder + "gz_" + str(w) + "_" \
-                + str(int(4096/reduction_factor))
-            if normalize:
-                null_gz_path += "_normalized"
-            null_gz_path += "/"
+                + str(int(4096/reduction_factor)) + normalize_path + "/"
 
             print("Converting path: " + event_folder[52:] + date + str(w)
-                  + "/ to gz_" + str(w) + "_512")
+                  + "/ to gz_" + str(w) + "_512" + normalize_path)
             convert_to_gz(event_path,
                           event_gz_path,
                           reduction_factor,
@@ -253,7 +250,7 @@ def reduce_data(wavelengths, date_paths, normalize=True,
                           plot=False)
 
             print("Converting path: " + null_folder[52:] + date + str(w)
-                  + "/ to gz_" + str(w) + "_512")
+                  + "/ to gz_" + str(w) + "_512" + normalize_path)
             convert_to_gz(null_path,
                           null_gz_path,
                           reduction_factor,

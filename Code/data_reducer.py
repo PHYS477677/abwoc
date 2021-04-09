@@ -206,13 +206,11 @@ def reduce_data(wavelengths, date_paths, reduction_factor=8, event="XRA"):
               + " image")
         return False
 
+    # Path variables
     AIA_path = "/content/drive/Shareddrives/Phys 477 - Astro Project/" \
                + "AIA_files/"
     event_folder = event + '_events/'
     null_folder = event + '_nulls/'
-
-    # wavelengths = ([131])
-    # date_paths = ["2011_01_", "2014_01_", "2016_02_"]
 
     # Iterate over all combinations of dates and wavelengths
     for w in wavelengths:
@@ -220,16 +218,26 @@ def reduce_data(wavelengths, date_paths, reduction_factor=8, event="XRA"):
             event_path = AIA_path + event_folder + date + str(w) + "/"
             null_path = AIA_path + null_folder + date + str(w) + "/"
 
-            event_gz_path = AIA_path + event_folder + "gz_" + str(w) + "_512/"
-            null_gz_path = AIA_path + null_folder + "gz_" + str(w) + "_512/"
+            event_gz_path = AIA_path + event_folder + "gz_" + str(w) + "_" \
+                + str(int(4096/reduction_factor)) + "/"
+            null_gz_path = AIA_path + null_folder + "gz_" + str(w) + "_" \
+                + str(int(4096/reduction_factor)) + "/"
 
             print("Converting path: " + event_folder[52:] + date + str(w)
                   + "/ to gz_512")
-            convert_to_gz(event_path, event_gz_path, 8, date[:-1], plot=False)
+            convert_to_gz(event_path,
+                          event_gz_path,
+                          reduction_factor,
+                          date[:-1],
+                          plot=False)
 
             print("Converting path: " + null_folder[52:] + date + str(w)
                   + "/ to gz_512")
-            convert_to_gz(null_path, null_gz_path, 8, date[:-1], plot=False)
+            convert_to_gz(null_path,
+                          null_gz_path,
+                          reduction_factor,
+                          date[:-1],
+                          plot=False)
 
     print("\nAll Conversions Complete.")
     return True

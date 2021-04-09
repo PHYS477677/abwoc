@@ -9,15 +9,30 @@ To run within a colab script, first "import data_reducer", then execute
 data_reducer.reduce_data(wavelengths, date_paths, normalize,
 reduction_factor)
 
+Parameters
+----------
+wavelengths : 1-D list of integers
+    List of wavelengths over which to reduce the data.
+    For example: [131, 171, 211]
+date_paths : 1-D list of Strings
+    List of years and months over which to reduce the data.
+    Each string is given in the format "[year]_[month]_"
+    For example: ["2012_03_", "2014_12_"]
+normalize : Boolean, optional
+    Determines whether to apply a 0-1 normalization to the reduced images.
+    The default is True, which normalizes the images.
+reduction_factor : Integer, optional
+    Factor by which to reduce the original 4096 x 4096 images.
+    For example: reduction_factor = 8 produces 512 x 512 images.
+    The default is 8.
+event : String, optional
+    The type of event according to the event designations from the space
+    weather reports. The default is "XRA". Possible values include "FLA".
 
-Inputs
-------
-    wavelengths : 1-D list or numpy array of integer wavelengths in Angstroms
-                      over which to reduce.
-    date_paths  : 1-D list of strings in the format "[year]_[month]_"
-                      corresponding to dates over which to reduce.
-    reduction_factor  : integer over which to reduce
-
+Returns
+-------
+Success : Boolean
+    Returns whether the function succeeded (True) or failed (False).
 
 Original file is located at
     https://colab.research.google.com/drive/1kBJ4YF6Nok36UcTkULBT2kBzDjiJkIUH

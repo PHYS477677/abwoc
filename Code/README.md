@@ -13,4 +13,4 @@
 3. Model Validation
     1.  Test the performance of a trained model on various data sets
 
-## Folder Structure
+## Files and Scripts

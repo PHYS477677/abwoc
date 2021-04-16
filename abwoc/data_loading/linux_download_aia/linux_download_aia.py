@@ -98,7 +98,6 @@ def upload(localpaths, up_path_id, wavelength, sub_fold, drive):
   -------
     No outputs are returned
   """
-  team_drive_id = '0AH2OWUcL_0Y3Uk9PVA'  # Drive ID for PHYS 477 Astro Team
   foldername = sub_fold+"_"+str(wavelength) # Name of subfolder (e.g. 2015_03_131)
 	
   # == Check if subfolder already exists == 

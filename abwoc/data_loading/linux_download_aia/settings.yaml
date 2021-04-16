@@ -1,8 +1,0 @@
-client_config_backend: 'settings'
-client_config:
-  client_id: "64034482795-sj23nif85nnmmbjmuqqi4db6jtmcia23.apps.googleusercontent.com"
-  client_secret: "kk6XaQsG502hrJEJvG5A4-6K"
-save_credentials: True
-save_credentials_backend: 'file'
-save_credentials_file: 'creds.json'
-

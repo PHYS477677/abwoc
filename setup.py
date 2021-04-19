@@ -2,8 +2,14 @@
 
 from distutils.core import setup
 
-setup(name='Astros but Without Cheating',
+# Get requirements
+with open('requirements.txt') as f:
+    requires = f.read().splitlines()
+
+setup(name='abwoc',
       version='0.1',
+      description='Pipeline for Astros but Without Cheating',
       author='Grosson, Meng, Tracy, White',
-      packages=['abwoc']
+      packages=['abwoc'],
+      install_requires=requires
      )

@@ -8,4 +8,7 @@ To install, use
     pip install git+https://github.com/PHYS477677/abwoc
 
 ## License
+abwoc is released under the Apache license.
+
+## Data used
 The Joint Science Operations Center (JSOC) release of AIA data can be accessed at [jsoc.stanford.edu](http://jsoc.stanford.edu/). NOAA Space Weather Prediction Center (SWPC) Event Reports can be accessed at [swpc.noaa.gov](https://www.swpc.noaa.gov/products/solar-and-geophysical-event-reports).

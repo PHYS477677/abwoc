@@ -281,35 +281,6 @@ def get_event_df(parent_df, event_type, year, month, day):
   return (pd.concat([df_new_1,df_new_2]))
 
 
-
-def mean_pool(square_array,ratio):
-  """
-  Function to downsample a square array after applying a meanpool
-
-  Inputs
-  ------
-    square_array : Array to be downsampled. Must be a square array with axes
-                   lenghts that can be divisible by ratio
-    ratio        : Downsampling ratio. i.e. a 1024x1024 array with a ratio of 4
-                   will be downsampled to 256x256
-  
-  Outputs
-  -------
-    Returns the downsampled array
-  """
-  # Dimensions of array
-  alen_1 = np.size(square_array,0)
-  alen_2 = np.size(square_array,1)
-  # Confirming array is square
-  if (alen_1!=alen_2):
-    print("ERROR: ARRAY NOT SQUARE")
-  else:
-    return square_array.reshape(int(alen_1/ratio), int(ratio), 
-                                int(alen_1/ratio), int(ratio)).mean(axis=(1,3))
-
-
-
-
 def create_storage_dirs(event_path,null_path,sub_fold,lambdas):
   """
   Script to check if the directories for storing AIA images already exist,
@@ -322,7 +293,7 @@ def create_storage_dirs(event_path,null_path,sub_fold,lambdas):
     sub_fold   : folder name prefix for a specific time/date
     lambdas    : wavelengths for which images are being downloaded and stored
 
-  Outpus
+  Outputs
   ------
     No outputs are returned
   """
@@ -334,69 +305,4 @@ def create_storage_dirs(event_path,null_path,sub_fold,lambdas):
       os.mkdir(storage_path)
 
 
-# Primary Download Script Initial Variable Values
 
-# Arguments given
-year_min = int(sys.argv[1])
-year_max = int(sys.argv[2])
-month_min = int(sys.argv[3])
-month_max = int(sys.argv[4])
-day_min = int(sys.argv[5])
-day_max = int(sys.argv[6])
-event_type = str(sys.argv[7])
-
-# Where the images are to be stored locally
-local_path = './temp_AIA_files/'
-if not os.path.isdir(local_path):
-  os.mkdir(local_path)
-
-# Dictionary of Google Drive folder IDs for each event type
-path_id_dict = {
-  'XRA_events': '1PwUaIaIXlWsCnpQ0ub86X1igdAFJCenf', 
-  'XRA_nulls': '1HNvf0CWYWVVuv0zwMCVv1mU9hRwUoGcT', 
-  'FLA_events': '1VuTnV6Q-0iOijzhNi3uyhMePPNb89q1N', 
-  'FLA_nulls': '1-_n0qQarKgyfVXD6dkMJm5oDBiw6ATbv'
-}
-event_path_id = path_id_dict[event_type+"_events"]
-null_path_id = path_id_dict[event_type+"_nulls"]
-
-# Define time parameters
-years = np.arange(year_min,year_max)
-months = np.arange(month_min,month_max)
-days = np.arange(day_min,day_max)
-
-# Event database to select events from
-df_main = pd.read_csv('./event_df_main.csv')
-
-# Wavelengths to download
-lambdas_used = [131,171,211]
-
-# Connect to Google Drive
-gauth = GoogleAuth()
-gauth.LocalWebserverAuth()
-drive = GoogleDrive(gauth)
-
-for y in years:
-  for m in months:
-    sub_fold = str(y)+"_"+str(m).zfill(2)
-    #create_storage_dirs(local_event_path,local_null_path,sub_fold,lambdas_used)
-    for d in days:
-      # Create dataframe containing relevant events
-      event_df = get_event_df(df_main,event_type,y,m,d)
-      
-      # Select one time for each event
-      event_times = get_event_times(event_df, y, m, d)
-
-      # Print selected times to screen
-      print(event_times)
-
-      # Select one null event time for each positive event
-      num_events = np.size(event_times,0)
-      null_times = get_null_times(event_df, num_events, y, m, d)
-
-      # Print selected times to screen
-      print(null_times)
-
-      # Download images
-      get_images(event_times,local_path,event_path_id,sub_fold,lambdas_used,y,m,d,drive,testing=False)
-      get_images(null_times,local_path,null_path_id,sub_fold,lambdas_used,y,m,d,drive,testing=False)

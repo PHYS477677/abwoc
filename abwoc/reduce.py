@@ -1,38 +1,10 @@
 """
-data_reducer.py.
+reduce.py
 
-This script is designed to be run within a pre-mounted Colab notebook.
-This script reduces full size (4096x4096) .fits images, downscales them,
-and then uploads them back into the google drive as .gz files.
+A collection of functions which reduce the storage size of the AIA data, and
+wrapped into the function reduce_data().
 
-To run within a colab script, first "import data_reducer", then execute
-data_reducer.reduce_data(wavelengths, date_paths, normalize,
-reduction_factor)
-
-Parameters
-----------
-wavelengths : 1-D list of integers
-    List of wavelengths over which to reduce the data.
-    For example: [131, 171, 211]
-date_paths : 1-D list of Strings
-    List of years and months over which to reduce the data.
-    Each string is given in the format "[year]_[month]_"
-    For example: ["2012_03_", "2014_12_"]
-normalize : Boolean, optional
-    Determines whether to apply a 0-1 normalization to the reduced images.
-    The default is True, which normalizes the images.
-reduction_factor : Integer, optional
-    Factor by which to reduce the original 4096 x 4096 images.
-    For example: reduction_factor = 8 produces 512 x 512 images.
-    The default is 8.
-event : String, optional
-    The type of event according to the event designations from the space
-    weather reports. The default is "XRA". Possible values include "FLA".
-
-Returns
--------
-Success : Boolean
-    Returns whether the function succeeded (True) or failed (False).
+Use "import abwoc.reduce" or "from abwoc import reduce"
 
 Original file is located at
     https://colab.research.google.com/drive/1kBJ4YF6Nok36UcTkULBT2kBzDjiJkIUH
@@ -45,14 +17,11 @@ import os.path
 import glob
 import sunpy.map
 
-# =============================================================================
-#                               Helper Functions
-# =============================================================================
 
 
 def mean_pool(square_array, ratio):
     """
-    Downsample a square array after applying a meanpool.
+    Downsample a square array by applying a meanpool.
 
     Inputs
     ------
@@ -275,3 +244,32 @@ def reduce_data(wavelengths, date_paths, normalize=True,
 
     print("\nAll Conversions Complete.")
     return True
+
+
+def reduce_map(smap,ratio):
+    """
+    Function to downsample a sunpy map, including changing metadata
+    necessary for plotting with accurate scales.
+
+    Inputs
+    ------
+        smap  : Map to be downsampled. Must be a sunpy.map.Map object
+        ratio : Downsampling ratio, as defined in mean_pool()
+
+    Outputs
+    -------
+      Returns the downsampled sunpy map
+    """
+
+    data = smap.data
+    meta = smap.meta
+
+    reduced_data = mean_pool(data, ratio)
+    meta['naxis1'] /= ratio
+    meta['naxis2'] /= ratio
+    meta['crpix1'] /= ratio
+    meta['crpix2'] /= ratio
+    meta['cdelt1'] *= ratio
+    meta['cdelt2'] *= ratio
+
+    return sunpy.map.Map(reduced_data, meta)

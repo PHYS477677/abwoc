@@ -1,0 +1,5 @@
+astropy
+sunpy
+aiapy
+pandas
+glob

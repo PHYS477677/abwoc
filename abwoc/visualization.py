@@ -69,10 +69,10 @@ def plots(smaps):
     add_plots(smaps, fig, ax)
 
     #share axis labels over the whole figure
-    ylab = axis_labels_from_ctype(smap[0].coordinate_system[1],
-                                            smap[0].spatial_units[1])
-    xlab = axis_labels_from_ctype(smap[0].coordinate_system[0],
-                                            smap[0].spatial_units[0])
+    ylab = axis_labels_from_ctype(smaps[0].coordinate_system[1],
+                                            smaps[0].spatial_units[1])
+    xlab = axis_labels_from_ctype(smaps[0].coordinate_system[0],
+                                            smaps[0].spatial_units[0])
     fig.text(0.5, 0.04, xlab, ha='center')
     fig.text(0.01, 0.5, ylab, va='center', rotation='vertical')
 
@@ -103,10 +103,10 @@ def plot_zoom(smaps, x0, y0, xlength, ylength):
     nmap = len(smaps)
     submaps = [0]*nmap
     for i in range(nmap):
-        bottom_left = SkyCoord(x0, y0, frame=smap[i].coordinate_frame)
+        bottom_left = SkyCoord(x0, y0, frame=smaps[i].coordinate_frame)
         top_right = SkyCoord(x0 + xlength, y0 + ylength,
-                             frame = smap[i].coordinate_frame)
-        submaps[i] = smap[i].submap(bottom_left, top_right=top_right)
+                             frame = smaps[i].coordinate_frame)
+        submaps[i] = smaps[i].submap(bottom_left, top_right=top_right)
     plots(submaps)
 
 

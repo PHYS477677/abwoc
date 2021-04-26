@@ -1,11 +1,18 @@
 # Astros but Without the Cheating (abwoc)
 
 ## Solar Event Classifier 
-abwoc is used for downloading images of solar events in the desired wavelengths from AIA data. These images can then be used to train a CNN to identify to identify the desired solar event. Modules for testing the trained models are also included.  
+```abwoc``` is used for downloading images of solar events in the desired wavelengths from AIA data. These images can then be used to train a CNN to identify to identify the desired solar event. Modules for testing the trained models are also included.  
 
 ## Installation
 To install, use
-    pip install git+https://github.com/PHYS477677/abwoc
+
+```
+pip install git+https://github.com/PHYS477677/abwoc
+```
+
+## Examples
+Examples of usage of ```abwoc``` are provided in the 'Jupyter_nbs' directory. Notebooks included are:
+- visualization.ipynb &mdash; How to view the AIA images of the Sun
 
 ## License
 abwoc is released under the Apache license.

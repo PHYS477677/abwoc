@@ -15,19 +15,28 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
-# Arguments given to script
-dataset_file = sys.argv[1]  # path to the desired dataset with a label file
-#                           preferably running from the dataset directory
-wavelength = sys.argv[2]  # wavelength to use, 'all' for 131, 171, 211 waves
-model_struct = sys.argv[3]  # the model structure to use, '1layer', 'ctmodel'
-checkpoint_path = sys.argv[4]  # path to checkpoint directory
-#   Measure the performance of the model for one or multiple epochs
-#   -1 is the latest epoch and inputting the same value will simply return the
-#   accuracy and loss for the chosen model, dataset, and checkpoint. If a range
-#   of epochs is input, a graph of the model performance vs epoch will be shown
-#   Note: using 0 0 will evaluate the untrained model structure
-start_epoch = int(sys.argv[5])  # the training epoch to load weigths from
-end_epoch = int(sys.argv[6])  # the final epoch to load weights from
+def modeval(dataset_file, wavelength, model_struct, checkpoint_path, start_epoch, end_epoch):
+    """
+
+    A function to evaluate the performance of a model on a given dataset, outputs an accuracy and loss metric
+
+    Inputs
+    ------
+        dataset_file    : path to the desired dataset with a label file. preferably running from the dataset directory
+        wavelength      : wavelength to use, 'all' for 131, 171, 211 waves
+        model_struct    : the model structure to use, '1layer', 'ctmodel'
+        checkpoint_path : path to checkpoint directory
+        start_epoch     : Measure the performance of the model for one or multiple epochs. -1 is the latest epoch and 
+                          inputting the same value will simply return the accuracy and loss for the chosen model, dataset, 
+                          and checkpoint. If a range of epochs is input, a graph of the model performance vs epoch will be shown
+                          Note: using 0 0 will evaluate the untrained model structure
+        end_epoch       : the final epoch to load weights from
+
+    Outputs
+    -------
+        No outputs are returned
+
+    """
 
 # Print and check inputs
 

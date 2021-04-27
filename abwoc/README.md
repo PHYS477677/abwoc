@@ -14,3 +14,15 @@
     1.  Test the performance of a trained model on various data sets
 
 ## Files and Scripts
+
+### data_loading
+
+`fetch_aia.py` -- contains functions for searching and downloading AIA images based on wavelengths and event type
+
+`genimage.py` -- generates a simulated image of the Sun, optionally with an artificial event 
+
+`reduce.py` -- contains functions which reduce the size of images, and store those as compressed files
+
+### validation
+
+`evaluate_model.py` -- evaluates the loss and accuracy for a given model using a specfified dataset

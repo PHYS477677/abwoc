@@ -12,6 +12,6 @@ setup(name='abwoc',
       author='Grosson, Meng, Tracy, White',
       packages=find_packages(),
       include_package_data = True,
-      package_data=[('abwoc', ['abwoc/text.txt'])],
+      package_data=[('abwoc', ['text.txt'])],
       install_requires=requires
      )

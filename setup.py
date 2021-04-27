@@ -11,5 +11,6 @@ setup(name='abwoc',
       description='Pipeline for Astros but Without Cheating',
       author='Grosson, Meng, Tracy, White',
       packages=find_packages(),
+      package_data={'abwoc': ['data_files/*.csv']}
       install_requires=requires
      )

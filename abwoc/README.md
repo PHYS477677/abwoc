@@ -27,3 +27,7 @@
 `genimage.py` &mdash; generates a simulated image of the Sun, optionally with an artificial event 
 
 `reduce.py` &mdash; contains functions which reduce the size of images, and store those as compressed files
+
+# Packages and Functions within `abwoc`
+
+

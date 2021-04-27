@@ -17,7 +17,7 @@
 
 `xray_model.py` &mdash; train or evaluate a model using the given dataset, model structure, and checkpoints
 
-`visualization.py` &mdash; display solar images and show events at different scales
+`visualization.py` &mdash; display solar images at the desired resolution, and show events at different scales
 
 ### Sub-Directories
 #### data_loading

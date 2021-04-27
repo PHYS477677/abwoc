@@ -1,35 +1,45 @@
-# A module to train a model for a given dataset, using the desired wavelengths
-# between one and three layers, an integer number of epochs, and a specified
-# checkpoint path, where a checkpoint directory will be created if none is
-# specified, and to evaluate the performance of a model on a given dataset, outputs
-# an accuracy and loss metric
+"""
+Trains CNN models given a dataset.
 
-# Imports
+A module to train a model for a given dataset, using the desired wavelengths
+between one and three layers, an integer number of epochs, and a specified
+checkpoint path, where a checkpoint directory will be created if none is
+specified, and to evaluate the performance of a model on a given dataset,
+outputs an accuracy and loss metric.
+"""
+
+# Import Packages
 import numpy as np
 import os
-import sys
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
-def modlearn ( dataset_file, wavelength, model_struct, epochs, checkpoint_path, load_checkpoint, initial_epoch ):
+
+def modlearn(dataset_file, wavelength, model_struct, epochs, checkpoint_path,
+             load_checkpoint, initial_epoch):
     """
+    Train a model given a dataset, returning an accuracy and loss metric.
 
     Inputs
     ------
-        dataset_file    : path to the desired dataset with a label file preferably running from the dataset directory
+        dataset_file    : path to the desired dataset with a label file
+                            preferably running from the dataset directory.
         wavelength      : wavelength to use, 'all' for 131, 171, 211 waves
         model_struct    : the model structure to use, '1layer', 'ctmodel'
-        epochs          : the number of epochs to train for NOTE: this will train for this amount of ADDITIONAL epochs
-        checkpoint_path : path to checkpoint directory, if one does not exist a path will be created, 
-                          this will also be the name of the model
-        load_checkpoint : boolean whether to use the continue from the most recent checkpoint
-        initial_epoch   : the initial epoch to start training from if loading from checkpoints
+        epochs          : the number of epochs to train for NOTE: this will
+                            train for this amount of ADDITIONAL epochs
+        checkpoint_path : path to checkpoint directory, if one does not exist
+                            a path will be created,
+                            this will also be the name of the model
+        load_checkpoint : boolean whether to use the continue from the most
+                            recent checkpoint
+        initial_epoch   : the initial epoch to start training from if loading
+                            from checkpoints
 
     Outputs
     -------
-        No outputs are returned
-
+        None.
     """
     # Print and check inputs
 
@@ -44,10 +54,10 @@ def modlearn ( dataset_file, wavelength, model_struct, epochs, checkpoint_path, 
         input_shape = (image_size, image_size, 3)
     else:
         input_shape = (image_size, image_size, 1)
-    avg_pool = True
-    number_layers = 0
+    # avg_pool = True
+    # number_layers = 0
     initial_channels = 128
-    conv_channel_increase = 2
+    # conv_channel_increase = 2
     if model_struct == 'ctmodel':
         max_pool_size = (5, 5)
     else:
@@ -110,7 +120,7 @@ def modlearn ( dataset_file, wavelength, model_struct, epochs, checkpoint_path, 
                         initial_epoch=initial_epoch)
 
     # Save the history data for later use
-    hist_save_name = './history_dicts/' + model_name + '.npy'
+    # hist_save_name = './history_dicts/' + model_name + '.npy'
 
     # Plot the accuracy and loss metrics
     acc = history.history['accuracy']
@@ -139,37 +149,47 @@ def modlearn ( dataset_file, wavelength, model_struct, epochs, checkpoint_path, 
     # print(epochs_range, val_acc)
     # print(epochs_range, acc)
     # print(epochs_range, val_loss)
+    return
 
 
-def modeval(dataset_file, wavelength, model_struct, checkpoint_path, start_epoch, end_epoch):
+def modeval(dataset_file, wavelength, model_struct, checkpoint_path,
+            start_epoch, end_epoch):
     """
+    Evaluate a model given a dataset, returning an accuracy and loss metric.
 
-    A function to evaluate the performance of a model on a given dataset, outputs an accuracy and loss metric
+    A function to evaluate the performance of a model on a given dataset,
+    outputs an accuracy and loss metric.
 
     Inputs
     ------
-        dataset_file    : path to the desired dataset with a label file. preferably running from the dataset directory
+        dataset_file    : path to the desired dataset with a label file.
+                            preferably running from the dataset directory
         wavelength      : wavelength to use, 'all' for 131, 171, 211 waves
         model_struct    : the model structure to use, '1layer', 'ctmodel'
         checkpoint_path : path to checkpoint directory
-        start_epoch     : Measure the performance of the model for one or multiple epochs. -1 is the latest epoch and 
-                          inputting the same value will simply return the accuracy and loss for the chosen model, dataset, 
-                          and checkpoint. If a range of epochs is input, a graph of the model performance vs epoch will be shown
-                          Note: using 0 0 will evaluate the untrained model structure
+        start_epoch     : Measure the performance of the model for one or
+                            multiple epochs. -1 is the latest epoch and
+                            inputting the same value will simply return the
+                            accuracy and loss for the chosen model, dataset,
+                            and checkpoint. If a range of epochs is input, a
+                            graph of the model performance vs epoch will be
+                            shown.
+                            Note: using 0 0 will evaluate the untrained model
+                            structure.
         end_epoch       : the final epoch to load weights from
 
     Outputs
     -------
-        No outputs are returned
+        None.
 
     """
-
     # Print and check inputs
 
     if start_epoch == end_epoch:
         single_epoch = True
     else:
         single_epoch = False
+
     # Load dataset
     train_array = np.load(dataset_file)
     train_labels = np.load(dataset_file.replace('.npy', '_labels.npy'))
@@ -181,10 +201,10 @@ def modeval(dataset_file, wavelength, model_struct, checkpoint_path, start_epoch
         input_shape = (image_size, image_size, 3)
     else:
         input_shape = (image_size, image_size, 1)
-    avg_pool = True
-    number_layers = 0
+    # avg_pool = True
+    # number_layers = 0
     initial_channels = 128
-    conv_channel_increase = 2
+    # conv_channel_increase = 2
     if model_struct == 'ctmodel':
         max_pool_size = (5, 5)
     else:
@@ -200,8 +220,8 @@ def modeval(dataset_file, wavelength, model_struct, checkpoint_path, start_epoch
             kwargs['data_format'] = 'channels_last'
 
         model.add(layers.Conv2D(initial_channels*(i+1), kernel_size,
-                            activation='relu',
-                            **kwargs))
+                                activation='relu',
+                                **kwargs))
     model.add(layers.MaxPooling2D(pool_size=max_pool_size))
 
     model.add(layers.Flatten())
@@ -266,3 +286,4 @@ def modeval(dataset_file, wavelength, model_struct, checkpoint_path, start_epoch
 
         print('For epochs in the range', epoch_range, 'accuracy is:', acc)
         print('For epochs in the range', epoch_range, 'loss is:', loss)
+    return

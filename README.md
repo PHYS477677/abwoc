@@ -13,6 +13,7 @@ pip install git+https://github.com/PHYS477677/abwoc
 ## Examples
 Examples of usage of ```abwoc``` are provided in the 'demos' directory. Notebooks included are:
 - visualization.ipynb &mdash; How to view the AIA images of the Sun
+- model_train_eval.ipynb &mdash; How to train and evaluate CNN models on this dataset
 
 ## License
 abwoc is released under the Apache license.

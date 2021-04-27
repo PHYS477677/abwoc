@@ -19,7 +19,8 @@
 
 `visualization.py` &mdash; display solar images and show events at different scales
 
-### data_loading
+### Sub-Directories
+#### data_loading
 
 `fetch_aia.py` &mdash; contains functions for searching and downloading AIA images based on wavelengths and event type
 

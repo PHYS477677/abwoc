@@ -18,6 +18,7 @@
 `xray_model.py` &mdash; train or evaluate a model using the given dataset, model structure, and checkpoints
 
 Functions Included:
+
     1. modlearn : This function will read in an existing model checkpoint, or create a new one, and train the model on a specified dataset for a given number of epochs.
     2. modeval : This function will evaluate the loss and accuracy metrics for a given model, checkpoint, and dataset.
 

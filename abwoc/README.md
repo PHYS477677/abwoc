@@ -15,6 +15,10 @@
 
 ## Files and Scripts
 
+`xray_model.py` -- train or evaluate a model using the given dataset, model structure, and checkpoints
+
+`visualization.py` -- display solar images and show events at different scales
+
 ### data_loading
 
 `fetch_aia.py` -- contains functions for searching and downloading AIA images based on wavelengths and event type
@@ -22,7 +26,3 @@
 `genimage.py` -- generates a simulated image of the Sun, optionally with an artificial event 
 
 `reduce.py` -- contains functions which reduce the size of images, and store those as compressed files
-
-### validation
-
-`evaluate_model.py` -- evaluates the loss and accuracy for a given model using a specfified dataset

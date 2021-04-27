@@ -1,1 +1,2 @@
 include abwoc/data_files/*
+include sample-data/*

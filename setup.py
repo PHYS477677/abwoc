@@ -12,6 +12,7 @@ setup(name='abwoc',
       author='Grosson, Meng, Tracy, White',
       packages=find_packages(),
       include_package_data=True,
-      package_data={"": ["*.txt"]},
+      package_data={"": ["*.txt"],
+                   "abwoc":["data_files/*.csv],},
       install_requires=requires
      )

@@ -13,6 +13,6 @@ setup(name='abwoc',
       packages=find_packages(),
       include_package_data=True,
       package_data={"": ["*.txt"],
-                   "abwoc":["data_files/*.csv],},
+                   "abwoc":["data_files/*.csv]},
       install_requires=requires
      )

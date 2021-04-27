@@ -11,7 +11,7 @@ pip install git+https://github.com/PHYS477677/abwoc
 ```
 
 ## Examples
-Examples of usage of ```abwoc``` are provided in the 'Jupyter_nbs' directory. Notebooks included are:
+Examples of usage of ```abwoc``` are provided in the 'demos' directory. Notebooks included are:
 - visualization.ipynb &mdash; How to view the AIA images of the Sun
 
 ## License

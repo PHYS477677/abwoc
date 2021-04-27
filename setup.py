@@ -11,5 +11,6 @@ setup(name='abwoc',
       description='Pipeline for Astros but Without Cheating',
       author='Grosson, Meng, Tracy, White',
       packages=find_packages(),
+      include_package_data=True,
       install_requires=requires
      )

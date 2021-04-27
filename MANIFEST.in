@@ -1,1 +1,1 @@
-include test.txt
+include abwoc/data_files/*

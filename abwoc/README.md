@@ -1,19 +1,21 @@
-# Notebooks and scripts for Astros but Without Cheating
+# Packages and Functions within `abwoc`
 
-## Data Science Pipeline
+## Data Science Pipeline 
 
-1. Data Loading
+The primary purpose of this python package is to facilitate different steps of the Data Science Pipeline for our project. The different portions of our pipeline that this package is used with are described below:
+
+1. Data Loading - Done primarily with our `data_loading` sub-module
     1. Download AIA images based on desired wavelengths and events
     2. Downsize and normalize the images from their native 4096x4096 size, and save these downsized images
     3. Optionally create simulated images to test network structure
-2. Neural Network Training
+2. Neural Network Training - Done primarily with our `xray_model` module
     1. Cache images to machine
     2. Create a model using Keras
     3. Train a preexisting model and Save/Load model weights from checkpoints
-3. Model Validation
+3. Model Validation - Done primarily with our `xray_model` module
     1.  Test the performance of a trained model on various data sets
 
-## Files and Scripts
+## Primary Included Modules 
 
 `xray_model.py` &mdash; train or evaluate a model using the given dataset, model structure, and checkpoints
 
@@ -23,7 +25,7 @@ Functions Included:
 
 `visualization.py` &mdash; display solar images at the desired resolution, and show events at different scales
 
-### Sub-Directories
+### Sub-Directories and Sub-Modules
 #### data_loading
 
 `fetch_aia.py` &mdash; contains functions for searching and downloading AIA images based on wavelengths and event type
@@ -34,8 +36,6 @@ Functions Included:
 
 #### data_files
 
-`event_df_main.csv` &mdash; is a csv table containing the start times and end times for all space weather events reported by the NOAO in their space weather reports from the year 2010 through the year 2020.
-
-# Packages and Functions within `abwoc`
+`event_df_main.csv` &mdash; a csv table containing the start times and end times for all space weather events reported by the NOAO in their space weather reports from the year 2010 through the year 2020.
 
 

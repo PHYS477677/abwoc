@@ -32,6 +32,10 @@ Functions Included:
 
 `reduce.py` &mdash; contains functions which reduce the size of images, and store those as compressed files
 
+#### data_files
+
+`event_df_main.csv` &mdash; is a csv table containing the start times and end times for all space weather events reported by the NOAO in their space weather reports from the year 2010 through the year 2020.
+
 # Packages and Functions within `abwoc`
 
 

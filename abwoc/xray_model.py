@@ -16,11 +16,22 @@ import tensorflow as tf
 from tensorflow.keras import layers, models
 
 
-def modlearn(dataset_file, wavelength, model_struct, epochs, checkpoint_path,
+def model_learn(dataset_file, wavelength, model_struct, epochs, checkpoint_path,
              load_checkpoint, initial_epoch):
     """
     Train a model given a dataset, returning an accuracy and loss metric.
-
+    
+    This function creates a model with the desired structure, the options
+    being 1, 2, or 3 layers and 1 or 3 wavelengths. This model is then
+    either loaded from an existing checkpoint or trained from scratch.
+    The model trains for the desired number of epochs on the input
+    dataset, and then saves the updated weights for each training epoch
+    in a checkpoint file. In training the model, accuracy and loss metrics
+    are output. Accuracy is a measure of how many images in the training
+    set the model is correctly identifying and loss is a measure of the
+    difference between the desired output for the model and the actual
+    output of the model.
+    
     Inputs
     ------
         dataset_file    : path to the desired dataset with a label file
@@ -41,7 +52,6 @@ def modlearn(dataset_file, wavelength, model_struct, epochs, checkpoint_path,
     -------
         None.
     """
-    # Print and check inputs
 
     # Load dataset
     train_array = np.load(dataset_file)
@@ -152,13 +162,16 @@ def modlearn(dataset_file, wavelength, model_struct, epochs, checkpoint_path,
     return
 
 
-def modeval(dataset_file, wavelength, model_struct, checkpoint_path,
+def model_evaluate(dataset_file, wavelength, model_struct, checkpoint_path,
             start_epoch, end_epoch):
     """
     Evaluate a model given a dataset, returning an accuracy and loss metric.
 
-    A function to evaluate the performance of a model on a given dataset,
-    outputs an accuracy and loss metric.
+    This function evaluates the performance of a given model structure,
+    with weights loaded from a specified checkpoint. The function either
+    outputs the accuracy and loss metric for a single saved checkpoint, or
+    outputs a plot showing the accuracy and loss for a range of saved
+    checkpoints.
 
     Inputs
     ------
@@ -183,7 +196,6 @@ def modeval(dataset_file, wavelength, model_struct, checkpoint_path,
         None.
 
     """
-    # Print and check inputs
 
     if start_epoch == end_epoch:
         single_epoch = True
@@ -258,7 +270,7 @@ def modeval(dataset_file, wavelength, model_struct, checkpoint_path,
         print('model accuracy:', acc)
 
     else:
-        # cannot currently account for -1 epoch in a range
+        # does not account for -1 epoch in a range
         epoch_range = range(start_epoch, end_epoch+1)
         loss = np.zeros(len(epoch_range))
         acc = np.zeros(len(epoch_range))
